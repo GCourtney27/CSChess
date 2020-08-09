@@ -94,7 +94,7 @@ namespace Chess
 					ChessSquar.SetBackgroundSquar(ChessImages);
 				}
 
-				if (ChessGame.Board[ChessSquar.Name] != null)	// Valid board squar
+				if (ChessGame.Board[ChessSquar.Name] != null)	// Valid board square
 					ChessSquar.DrawPiece(ChessImages.GetImageForPiece(ChessGame.Board[ChessSquar.Name].piece )); // draw the chess piece image
 				
 				if (ChessSquar.Name == SelectedSquar && ShowMoveHelp==true) // selected check box
@@ -452,6 +452,8 @@ namespace Chess
 
 				// Handle the events fired by the library
 				ChessGame.ComputerThinking += new ChessLibrary.Game.ChessComputerThinking(ComputerThinking);
+
+				ChessGame.AbideByChess960RuleSet = NewGameDlg.bAbideBy960RUles;
 
 				ChessGame.Reset();	// Reset the game board
 				IsRunning = true;

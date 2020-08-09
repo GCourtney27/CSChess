@@ -38,7 +38,9 @@ namespace ChessLibrary
 
 		public bool DoNullMovePruning;		// True when compute should do null move pruning to speed up search
 		public bool DoPrincipleVariation;	// True when computer should use principle variation to optimize search
-		public bool DoQuiescentSearch;		// Return true when computer should do Queiscent search
+		public bool DoQuiescentSearch;      // Return true when computer should do Queiscent search
+
+		public bool AbideByChess960RuleSet;
 
 		public Game()
 		{
@@ -229,7 +231,7 @@ namespace ChessLibrary
 
             GameTurn = Side.SideType.White;	// In chess first turn is always of white
 			m_WhitePlayer.TimeStart();	// Player time starts
-			Board.Init();	// Initialize the board object
+			Board.Init(this.AbideByChess960RuleSet);	// Initialize the board object
 		}
 
 		// Return back the white player reference
