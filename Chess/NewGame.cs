@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Chess
 {
@@ -15,6 +16,7 @@ namespace Chess
 
         public string ResourceFolderPath;      // This string gcontains the resoruce folder path, where all the external resources are stored
         public bool bStartGame;		        // True when we need to start the game
+        public bool bAbideBy960RUles;       // True wether to use the chess 960 ruleset
 
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
@@ -33,10 +35,12 @@ namespace Chess
 		public System.Windows.Forms.TextBox BlackPlayerName;
 		public System.Windows.Forms.TextBox WhitePlayerName;
 		public System.Windows.Forms.PictureBox WhitePlayerImage;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private CheckBox checkBox1;
+
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
 		public NewGame()
 		{
@@ -89,6 +93,7 @@ namespace Chess
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.WhitePlayerName = new System.Windows.Forms.TextBox();
             this.WhitePlayerImage = new System.Windows.Forms.PictureBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -262,11 +267,23 @@ namespace Chess
             this.WhitePlayerImage.TabIndex = 1;
             this.WhitePlayerImage.TabStop = false;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(24, 230);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(151, 17);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Abide By Chess 960 Rules";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.AbideByChess960Rules_CheckedChanged);
+            // 
             // NewGame
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(374, 284);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnStart);
@@ -290,6 +307,7 @@ namespace Chess
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WhitePlayerImage)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
@@ -336,5 +354,11 @@ namespace Chess
         {
             (sender as TextBox).Select(0, (sender as TextBox).Text.Length);
         }
-	}
+
+        private void AbideByChess960Rules_CheckedChanged(object sender, EventArgs e)
+        {
+            bAbideBy960RUles = (sender as CheckBox).Checked;
+        }
+
+    }
 }
