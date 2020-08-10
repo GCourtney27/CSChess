@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
+using System.Xml.Schema;
 
 namespace ChessLibrary
 {
@@ -66,7 +67,7 @@ namespace ChessLibrary
 
 
             // Now setup the board for white side
-            if(Use960Rules)
+            if (Use960Rules)
             {
                 InitRandomCells(true);
 
@@ -114,15 +115,62 @@ namespace ChessLibrary
         }
 
         List<int> TakenSpots = new List<int>();
+        int NumBishops = 0;
+        int NumNights = 0;
+        int NumRooks = 0;
         int GetRandomLocationForPiece(int min, int max)
         {
             Random rand = new Random();
             int value = rand.Next(min, max);
 
+            //while (TakenSpots.Count == 5)
             while (true)
             {
                 if (TakenSpots.Contains(value))
                 {
+
+                    if ((Piece.PieceType)value == Piece.PieceType.Bishop)
+                    {
+                        if (NumBishops == 2)
+                        {
+                            value = rand.Next(min, max);
+                            continue;
+                        }
+                        else
+                        {
+                            TakenSpots.Add(value);
+                            NumBishops++;
+                            break;
+                        }
+                    }
+                    else if ((Piece.PieceType)value == Piece.PieceType.Knight)
+                    {
+                        if (NumNights == 2)
+                        {
+                            value = rand.Next(min, max);
+                            continue;
+                        }
+                        else
+                        {
+                            TakenSpots.Add(value);
+                            NumNights++;
+                            break;
+                        }
+                    }
+                    else if ((Piece.PieceType)value == Piece.PieceType.Rook)
+                    {
+                        if (NumRooks == 2)
+                        {
+                            value = rand.Next(min, max);
+                            continue;
+                        }
+                        else
+                        {
+                            TakenSpots.Add(value);
+                            NumRooks++;
+                            break;
+                        }
+                    }
                     value = rand.Next(min, max);
                     continue;
                 }
@@ -139,8 +187,21 @@ namespace ChessLibrary
 
         private void InitRandomCells(bool IsWhiteSide)
         {
-            if(IsWhiteSide)
+            TakenSpots.Clear();
+            NumNights = 0;
+            NumRooks = 0;
+            NumBishops = 0;
+
+            if (IsWhiteSide)
             {
+                //m_cells["a8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["h8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["b8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["g8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["c8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["f8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["e8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                //m_cells["d8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
                 m_cells["a8"].piece = new Piece(Piece.PieceType.Rook, m_WhiteSide);
                 m_cells["h8"].piece = new Piece(Piece.PieceType.Rook, m_WhiteSide);
                 m_cells["b8"].piece = new Piece(Piece.PieceType.Knight, m_WhiteSide);
@@ -161,7 +222,6 @@ namespace ChessLibrary
                 m_cells["e1"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_BlackSide);
                 m_cells["d1"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_BlackSide);
             }
-            TakenSpots.Clear();
         }
 
         /// <summary>
