@@ -116,14 +116,13 @@ namespace ChessLibrary
 
         List<int> TakenSpots = new List<int>();
         int NumBishops = 0;
-        int NumNights = 0;
+        int NumKnights = 0;
         int NumRooks = 0;
         int GetRandomLocationForPiece(int min, int max)
         {
             Random rand = new Random();
             int value = rand.Next(min, max);
 
-            //while (TakenSpots.Count == 5)
             while (true)
             {
                 if (TakenSpots.Contains(value))
@@ -145,7 +144,7 @@ namespace ChessLibrary
                     }
                     else if ((Piece.PieceType)value == Piece.PieceType.Knight)
                     {
-                        if (NumNights == 2)
+                        if (NumKnights == 2)
                         {
                             value = rand.Next(min, max);
                             continue;
@@ -153,7 +152,7 @@ namespace ChessLibrary
                         else
                         {
                             TakenSpots.Add(value);
-                            NumNights++;
+                            NumKnights++;
                             break;
                         }
                     }
@@ -182,7 +181,7 @@ namespace ChessLibrary
                     }
                     else if ((Piece.PieceType)value == Piece.PieceType.Knight)
                     {
-                        NumNights++;
+                        NumKnights++;
                     }
                     else if ((Piece.PieceType)value == Piece.PieceType.Rook)
                     {
@@ -192,15 +191,13 @@ namespace ChessLibrary
                     break;
                 }
             }
-
-            Debug.WriteLine(value);
             return value;
         }
 
         private void InitRandomCells(bool IsWhiteSide)
         {
             TakenSpots.Clear();
-            NumNights = 0;
+            NumKnights = 0;
             NumRooks = 0;
             NumBishops = 0;
 
