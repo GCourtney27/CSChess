@@ -176,6 +176,18 @@ namespace ChessLibrary
                 }
                 else
                 {
+                    if ((Piece.PieceType)value == Piece.PieceType.Bishop)
+                    {
+                        NumBishops++;
+                    }
+                    else if ((Piece.PieceType)value == Piece.PieceType.Knight)
+                    {
+                        NumNights++;
+                    }
+                    else if ((Piece.PieceType)value == Piece.PieceType.Rook)
+                    {
+                        NumRooks++;
+                    }
                     TakenSpots.Add(value);
                     break;
                 }
@@ -194,22 +206,14 @@ namespace ChessLibrary
 
             if (IsWhiteSide)
             {
-                //m_cells["a8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["h8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["b8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["g8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["c8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["f8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["e8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                //m_cells["d8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
-                m_cells["a8"].piece = new Piece(Piece.PieceType.Rook, m_WhiteSide);
-                m_cells["h8"].piece = new Piece(Piece.PieceType.Rook, m_WhiteSide);
-                m_cells["b8"].piece = new Piece(Piece.PieceType.Knight, m_WhiteSide);
-                m_cells["g8"].piece = new Piece(Piece.PieceType.Knight, m_WhiteSide);
-                m_cells["c8"].piece = new Piece(Piece.PieceType.Bishop, m_WhiteSide);
-                m_cells["f8"].piece = new Piece(Piece.PieceType.Bishop, m_WhiteSide);
-                m_cells["e8"].piece = new Piece(Piece.PieceType.King, m_WhiteSide);
-                m_cells["d8"].piece = new Piece(Piece.PieceType.Queen, m_WhiteSide);
+                m_cells["a8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["h8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["b8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["g8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["c8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["f8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["e8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
+                m_cells["d8"].piece = new Piece((Piece.PieceType)GetRandomLocationForPiece(1, 6), m_WhiteSide);
             }
             else
             {
