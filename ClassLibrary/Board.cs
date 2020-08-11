@@ -114,11 +114,11 @@ namespace ChessLibrary
             }
         }
 
-        List<int> TakenSpots = new List<int>();
-        int NumBishops = 0;
-        int NumKnights = 0;
-        int NumRooks = 0;
-        int GetRandomLocationForPiece(int min, int max)
+        public List<int> TakenSpots = new List<int>();
+        public int NumBishops = 0;
+        public int NumKnights = 0;
+        public int NumRooks = 0;
+        public int GetRandomLocationForPiece(int min, int max)
         {
             Random rand = new Random();
             int value = rand.Next(min, max);
@@ -194,7 +194,7 @@ namespace ChessLibrary
             return value;
         }
 
-        private void InitRandomCells(bool IsWhiteSide)
+        public void InitRandomCells(bool IsWhiteSide)
         {
             TakenSpots.Clear();
             NumKnights = 0;
